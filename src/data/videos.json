@@ -1,0 +1,24 @@
+[
+    {
+        "id": "1",
+        "slug": "train-video",
+        "title": "Train Video",
+        "description": "Description of train video",
+        "url": "/video_train.mp4",
+        "watchCount": 0,
+        "likeCount": 0,
+        "likedBy": [
+        ] 
+    },
+    {
+        "id": "2",
+        "slug": "test-video",
+        "title": "Test Video",
+        "description": "Description of test video",
+        "url": "/video_test.mp4",
+        "watchCount": 0,
+        "likeCount": 0,
+        "likedBy": [
+        ] 
+    }
+]
