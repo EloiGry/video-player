@@ -13,8 +13,9 @@ This project is a simple video watch player built with Next.js, TailwindCSS, Sha
 - **tRPC**: A framework for building end-to-end typesafe APIs.
   [tRPC Docs](https://trpc.io/)
 - **Typescript**: A superset of JavaScript that adds static typing.
-[react-player Docs](https://github.com/CookPete/react-player/)
+[Typescript Docs](https://www.typescriptlang.org/)
 - **react-player**: A React component for playing a variety of URLs.
+[react-player Docs](https://github.com/CookPete/react-player/)
 
 ## How it Works
 
