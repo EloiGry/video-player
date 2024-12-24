@@ -1,10 +1,9 @@
 import { FullScreen } from "./controls/fullscreen";
-import { PlayPause } from "./controls/play"
+import { PlayPause } from "./controls/play";
 import { PlayBackRate } from "./controls/playback";
 import Progress from "./controls/progress";
 import { Forward, Rewind } from "./controls/seekTo";
 import { Volume } from "./controls/volume";
-
 
 type VideoControlsProps = {
     controlsRef: React.RefObject<HTMLDivElement | null>
@@ -18,7 +17,7 @@ type VideoControlsProps = {
     onMute: () => void;
     volume: number; 
     muted: boolean;
-    playbackRate: number; // Add this line
+    playbackRate: number; // Rate at which the video plays
     onPlaybackRateChange: (rate: number) => void;
     fullscreen: boolean;
     onToggleFullScreen: () => void;
@@ -28,7 +27,7 @@ type VideoControlsProps = {
     played: number;
     currentTime: string;
     duration: string;
-  };
+};
 
 export function VideoControls({
     title,
@@ -57,11 +56,11 @@ export function VideoControls({
         <div ref={controlsRef}>
             <span className="absolute top-0 bg-black bg-opacity-60 py-2 px-4 rounded-br-lg"> {title} </span>
             <div className="absolute inset-0 flex justify-center items-center gap-2"> 
-                <Rewind  onRewind={onRewind} number={10}/>
-                    <PlayPause classNamePlay="hover:text-white transition-opacity duration-300" classNamePause="hover:text-white transition-opacity duration-300" sizeIcon={80} isPlaying={play} onTogglePlay={onPlayPause} />
+                <Rewind onRewind={onRewind} number={10}/>
+                <PlayPause classNamePlay="hover:text-white transition-opacity duration-300" classNamePause="hover:text-white transition-opacity duration-300" sizeIcon={80} isPlaying={play} onTogglePlay={onPlayPause} />
                 <Forward onForward={onForward} number={10}/>
             </div>
-            <div  className="absolute bottom-0 bg-black bg-opacity-60 p-2 space-x-4b w-full">
+            <div className="absolute bottom-0 bg-black bg-opacity-60 p-2 space-x-4b w-full">
                 <div className="flex space-x-4">
                     <PlayPause sizeIcon={24} isPlaying={play} onTogglePlay={onPlayPause} />
                     <Progress played={played} onSeek={onSeek} onSeekMouseDown={onSeekMouseDown} onSeekMouseUp={onSeekMouseUp} currentTime={currentTime} duration={duration}/>

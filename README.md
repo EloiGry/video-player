@@ -13,7 +13,51 @@ This project is a simple video watch player built with Next.js, TailwindCSS, Sha
 - **tRPC**: A framework for building end-to-end typesafe APIs.
   [tRPC Docs](https://trpc.io/)
 - **Typescript**: A superset of JavaScript that adds static typing.
+[react-player Docs](https://github.com/CookPete/react-player)
+- **react-player**: A React component for playing a variety of URLs.
 
+## How it Works
+
+### Datas
+The video data, including video details such as title, description, and URL, is stored in a **JSON file** located at `data/videos.json`. The structure of each video entry looks like this:
+
+[
+  {
+    "id": "",
+    "slug": "",
+    "thumbnail": "",
+    "title": "",
+    "description": ".",
+    "url": "",
+    "watchCount": 0,
+    "likeCount": 0,
+    "likedBy": [
+    ]
+  },
+] 
+
+### Handling Video Views
+The view count is updated when a user watches more than **50%** of the video. This logic is implemented in the custom hook `useVideoPlayer.ts` using the `handleProgress` function.
+
+### Like System and Session Management
+
+The like system is managed using a **session token** that persists for **10 years**. Each user can like or unlike a video, and the liked status is stored in the `likedBy` array within the JSON file.
+
+- **Session Handling**: The token is stored and managed in a dedicated session file (`actions/session.ts`).
+- **Recommendation**: While this implementation uses a long-lasting token for simplicity, it is highly recommended to utilize a database and a proper session management system, such as **next-auth**, to ensure better scalability and security.
+
+This approach simplifies session handling for the current scope of the application while leaving room for more robust solutions in the future.
+
+
+### Caching with React Query
+
+Instead of refetching data every time, the app uses **React Query** for caching API responses related to **view counts** and **like counts**. This approach reduces the number of requests and improves performance, making the experience more seamless for the client. 
+
+- **Hooks Used**: The caching is implemented specifically for the counters using `useVideoViews` and `useVideoLike`.
+- **Enhanced Client Experience**: By caching the data, the app ensures smoother interactions and avoids delays caused by frequent API calls, enhancing the overall user experience.
+
+### File System Operations with fs-extra
+To read and update the video data, the app uses fs-extra, a module that simplifies working with the file system. This module is used to read the videos.json file and write updates back to it whenever a user's like or view count is updated.
 
 ## Setup Instructions
 To get started with the Video Watch Player app, follow the instructions below.

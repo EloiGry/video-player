@@ -2,15 +2,17 @@
 import { readVideos, writeVideos } from "@/actions/videoHandler";
 import { getSession } from "@/actions/session";
 
+/**
+ * Toggles like for a video and updates its like count.
+ * @param id - Video ID.
+ * @returns Updated like count.
+ */
 export const incrementLikes = async (id: string): Promise<number> => {
   const { sessionId } = await getSession();
+  const videos = await readVideos();
+  const video = videos.find((v: { id: string }) => v.id === id);
 
-  const videos = await readVideos(); 
-      const video = videos.find((v: { id: string }) => v.id === id);
-
-  if (!video) {
-    throw new Error(`Video with ID ${id} not found`);
-  }
+  if (!video) throw new Error(`Video with ID ${id} not found`);
 
   const hasLiked = video.likedBy.includes(sessionId);
 
@@ -23,6 +25,5 @@ export const incrementLikes = async (id: string): Promise<number> => {
   }
 
   await writeVideos(videos);
-
   return video.likeCount;
 };

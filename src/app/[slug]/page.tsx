@@ -1,5 +1,5 @@
 "use client";
-import { use} from "react";
+import { use } from "react";
 import { BackButton } from "@/components/backButton";
 import { VideoPlayer } from "@/components/videoPlayer";
 import { LoaderVideo } from "@/components/loader/loaderVideo";
@@ -11,22 +11,21 @@ import { useVideoLike } from "@/hooks/useVideoLike";
 import { useVideoViews } from "@/hooks/useVideoViews";
 import { trpc } from "@/trpc/client";
 
-
 export default function VideoPlayerPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = use(params);
     const router = useRouter();
 
     const { data: video, error, isLoading } = trpc.video.getVideo.useQuery({ slug });
     const { likeCount, isLiked, handleLike } = useVideoLike(video);
-    const {viewCount, incrementView } = useVideoViews(video) 
-    
+    const { viewCount, incrementView } = useVideoViews(video);
+
     if (isLoading) return <LoaderVideo />;
     
     if (error)
         return (
             <div className="flex flex-col justify-center items-center gap-2">
                 <Error message="Unable to load data. Refresh the page or try later." />
-                <Button onClick={() => router.back()}> Back to home </Button>
+                <Button onClick={() => router.back()}>Back to home</Button>
             </div>
         );
 
