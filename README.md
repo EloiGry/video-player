@@ -106,6 +106,7 @@ To simplify testing tRPC methods, you can use **tRPC Playground**, which provide
 
     2. Follow the [tRPC Playground documentation](https://github.com/trpc/trpc-playground) to set up and use the playground. It allows you to interactively test your tRPC API by providing a UI for making API calls and viewing responses.
 
+
 ## Run the Application in Production Mode 
 To run the application in production mode, build it first and then start it:
 
