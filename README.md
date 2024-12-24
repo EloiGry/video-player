@@ -13,7 +13,7 @@ This project is a simple video watch player built with Next.js, TailwindCSS, Sha
 - **tRPC**: A framework for building end-to-end typesafe APIs.
   [tRPC Docs](https://trpc.io/)
 - **Typescript**: A superset of JavaScript that adds static typing.
-[react-player Docs](https://github.com/CookPete/react-player)
+[react-player Docs](https://github.com/CookPete/react-player/)
 - **react-player**: A React component for playing a variety of URLs.
 
 ## How it Works
@@ -21,6 +21,7 @@ This project is a simple video watch player built with Next.js, TailwindCSS, Sha
 ### Datas
 The video data, including video details such as title, description, and URL, is stored in a **JSON file** located at `data/videos.json`. The structure of each video entry looks like this:
 
+```json
 [
   {
     "id": "",
@@ -31,10 +32,9 @@ The video data, including video details such as title, description, and URL, is 
     "url": "",
     "watchCount": 0,
     "likeCount": 0,
-    "likedBy": [
-    ]
-  },
-] 
+    "likedBy": []
+  }
+]```
 
 ### Handling Video Views
 The view count is updated when a user watches more than **50%** of the video. This logic is implemented in the custom hook `useVideoPlayer.ts` using the `handleProgress` function.
