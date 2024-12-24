@@ -1,26 +1,29 @@
 [
-    {
-        "id": "1",
-        "slug": "train-video",
-        "thumbnail": "/thumbnail-train.png",
-        "title": "Train Video",
-        "description": "Description of train video",
-        "url": "/video_train.mp4",
-        "watchCount": 0,
-        "likeCount": 0,
-        "likedBy": [
-        ] 
-    },
-    {
-        "id": "2",
-        "slug": "test-video",
-        "thumbnail": "/thumbnail-test.png",
-        "title": "Test Video",
-        "description": "Description of test video",
-        "url": "/video_test.mp4",
-        "watchCount": 0,
-        "likeCount": 0,
-        "likedBy": [
-        ] 
-    }
+  {
+    "id": "1",
+    "slug": "train-video",
+    "thumbnail": "/thumbnail-train.png",
+    "title": "Train Video",
+    "description": " Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorem expedita eaque saepe error at, maiores consequatur ipsa praesentium nemo sunt! Saepe asperiores veritatis aliquam commodi nobis, voluptatibus ullam obcaecati doloribus?",
+    "url": "/video_train.mp4",
+    "watchCount": 39,
+    "likeCount": 2,
+    "likedBy": [
+      "28657334-82ef-44e2-b7cb-3c82eae29608",
+      "f81bd5d7-1bac-4c75-b538-bb2e33f863da"
+    ]
+  },
+  {
+    "id": "2",
+    "slug": "test-video",
+    "thumbnail": "/thumbnail-test.png",
+    "title": "Test Video",
+    "description": " Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorem expedita eaque saepe error at, maiores consequatur ipsa praesentium nemo sunt! Saepe asperiores veritatis aliquam commodi nobis, voluptatibus ullam obcaecati doloribus?",
+    "url": "/video_test.mp4",
+    "watchCount": 25,
+    "likeCount": 1,
+    "likedBy": [
+      "28657334-82ef-44e2-b7cb-3c82eae29608"
+    ]
+  }
 ]

@@ -2,12 +2,12 @@ import {format} from '@/utils/format';
 import { useState } from 'react';
 import ReactPlayer from 'react-player';
 import screefull from 'screenfull'
-import { set } from 'zod';
+
 
 type PlayerRef = React.RefObject<ReactPlayer | null>;
-type TimeDisplayFormat = "normal" | "reverse";
 
 export function useVideoPlayer() {
+
     const [videoState, setVideoState] = useState({
         playing: false,
         muted: false,
@@ -16,6 +16,7 @@ export function useVideoPlayer() {
         playbackRate: 1.0,
         fullscreen: false,
         played: 0,
+        hasSeenHalf: false
       });
 
       const togglePlay = () =>
@@ -76,16 +77,24 @@ export function useVideoPlayer() {
         }
       }
 
-      const handleProgress = (state: any) => {
+      const handleProgress = (state: any, incrementViews: (id: string) => void, id: string) => {
+        if (state.played > 0.5 && !videoState.hasSeenHalf && state.played !== 1) {
+         incrementViews(id);
          setVideoState(prevState => ({
-            ...prevState,
-            ...state
+           ...prevState,
+           hasSeenHalf: true, 
          }))
+        };
+
+        setVideoState(prevState => ({
+          ...prevState,
+          ...state
+        }))
+        
       }
 
       const handleSeekChange = (value: number[]) => {
         const newValue = value[0] / 100;
-        console.log("seekchange", newValue)
         setVideoState(prevState => ({
             ...prevState,
             played: newValue
@@ -122,7 +131,15 @@ export function useVideoPlayer() {
         return format(time);
       }
 
-    
+      const handleEnded = () => {
+        setVideoState(prevState => ({
+          ...prevState,
+          hasSeenHalf: false,
+          played: 0,
+        }));
+        togglePlay()
+      };
+
       
 
       return {
@@ -140,6 +157,7 @@ export function useVideoPlayer() {
         handleSeekMouseUp,
         currentTime,
         duration,
-        handleProgress
+        handleProgress,
+        handleEnded
         };
     }

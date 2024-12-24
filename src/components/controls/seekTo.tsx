@@ -13,7 +13,7 @@ type ForwardProps = {
 
 function Rewind({ onRewind, number }: RewindProps) {
   return (
-    <button onClick={onRewind} className="relative opacity-80 hover:opacity-100 transition-opacity duration-300">
+    <button onClick={onRewind} className="relative hover:text-white transition-opacity duration-300">
       <RotateCcw size={36}/>
       <span className="absolute text-[10px] inset-0 text-center mt-2.5"> {number} </span>
     </button>
@@ -22,7 +22,7 @@ function Rewind({ onRewind, number }: RewindProps) {
 
 function Forward({ onForward, number }: ForwardProps) {
   return (
-    <button onClick={onForward} className="relative opacity-80 hover:opacity-100 transition-opacity duration-30">
+    <button onClick={onForward} className="relative hover:text-white transition-opacity duration-300">
       <RotateCw size={36}/>
       <span className="absolute text-[10px] inset-0 text-center mt-2.5"> {number} </span>
     </button>

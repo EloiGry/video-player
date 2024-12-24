@@ -7,10 +7,11 @@ import { VideoControls } from './videoControls';
 type VideoPlayerProps = {
     url: string;
     title: string;
-
+    id: string;
+    onView: (id: string) => void;
   }
 
-export function VideoPlayer({url, title}: VideoPlayerProps) {
+export function VideoPlayer({url, title, id, onView}: VideoPlayerProps) {
     const playerRef = useRef<ReactPlayer | null>(null);
     const playerContainerRef = useRef<HTMLDivElement | null>(null);
     const controlsRef = useRef<HTMLDivElement | null>(null);
@@ -29,7 +30,8 @@ export function VideoPlayer({url, title}: VideoPlayerProps) {
         handleSeekMouseUp,
         currentTime,
         duration,
-        handleProgress
+        handleProgress,
+        handleEnded
       } = useVideoPlayer();
 
       const handleMouseMove = () => {
@@ -44,6 +46,8 @@ export function VideoPlayer({url, title}: VideoPlayerProps) {
         }
       };
 
+      
+
 
 
     return (
@@ -57,9 +61,8 @@ export function VideoPlayer({url, title}: VideoPlayerProps) {
                 muted={videoState.muted}
                 volume={videoState.volume}
                 playbackRate={videoState.playbackRate}
-                onProgress={handleProgress}
-                onEnded={togglePlay}
-                
+                onProgress={(state) => handleProgress(state, onView, id)}
+                onEnded={handleEnded}
             />
             <div className="absolute inset-0 w-full h-full"> 
                 <VideoControls 

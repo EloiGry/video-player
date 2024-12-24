@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Video Watch Player
 
-## Getting Started
+This project is a simple video watch player built with Next.js, TailwindCSS, Shadcn UI, and tRPC. It allows users to view a list of videos and interact with them, including watching and liking the videos.
 
-First, run the development server:
+## Technologies Used
 
-```bash
+- **Next.js 15**: A React framework for building static and server-rendered applications.
+  [Next.js Docs](https://nextjs.org/docs)
+- **TailwindCSS**: A utility-first CSS framework for rapid UI development.
+  [Tailwind Docs](https://tailwindcss.com/)
+- **Shadcn UI**: A utility-first CSS framework for modern UI interfaces.
+  [Shadcn Docs](https://ui.shadcn.com/)
+- **tRPC**: A framework for building end-to-end typesafe APIs.
+  [tRPC Docs](https://trpc.io/)
+- **Typescript**: A superset of JavaScript that adds static typing.
+
+
+## Setup Instructions
+To get started with the Video Watch Player app, follow the instructions below.
+
+## Prerequisites
+Node.js (v16 or higher)
+npm or yarn (package manager)
+
+## Clone the Repository
+First, clone the repository to your local machine:
+
+git clone https://github.com/EloiGry/video-player.git
+cd video-player
+
+## Install Dependencies 
+Run the following command to install the required dependencies:
+
+npm install
+or if you're using yarn:
+
+yarn install
+
+## Run the Application locally
+To start the development server, use the following command:
+
 npm run dev
-# or
+
+or if you're using yarn:
+
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+This will start the app at http://localhost:3000. Open this URL in your browser to see the app in action.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Test the API calls
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+To test the tRPC API calls, you can use **tRPC Playground**.
+To simplify testing tRPC methods, you can use **tRPC Playground**, which provides a graphical interface for testing your tRPC API calls.
 
-## Learn More
+    1. First, install `trpc-playground`:
+        npm install trpc-playground
 
-To learn more about Next.js, take a look at the following resources:
+    2. Follow the [tRPC Playground documentation](https://github.com/trpc/trpc-playground) to set up and use the playground. It allows you to interactively test your tRPC API by providing a UI for making API calls and viewing responses.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Run the Application in Production Mode 
+To run the application in production mode, build it first and then start it:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+npm run build
+npm start
 
-## Deploy on Vercel
+or with yarn:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+yarn build
+yarn start
