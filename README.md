@@ -26,8 +26,6 @@ For supporting other video formats, please refer to the [React Player documentat
 
 ### Datas
 The video data, including video details such as title, description, and URL, is stored in a **JSON file** located at `data/videos.json`. The structure of each video entry looks like this:
-
-```json
 [
   {
     "id": "",
@@ -40,7 +38,8 @@ The video data, including video details such as title, description, and URL, is 
     "likeCount": 0,
     "likedBy": []
   }
-]```
+]
+
 
 ### Handling Video Views
 The view count is updated when a user watches more than **50%** of the video. This logic is implemented in the custom hook `useVideoPlayer.ts` using the `handleProgress` function.
