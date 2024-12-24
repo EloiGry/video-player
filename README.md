@@ -19,6 +19,11 @@ This project is a simple video watch player built with Next.js, TailwindCSS, Sha
 
 ## How it Works
 
+### Video Player 
+The React Player component in this project is configured to play `.mp4` video files.
+
+For supporting other video formats, please refer to the [React Player documentation](https://github.com/CookPete/react-player/) for configuration details.
+
 ### Datas
 The video data, including video details such as title, description, and URL, is stored in a **JSON file** located at `data/videos.json`. The structure of each video entry looks like this:
 
