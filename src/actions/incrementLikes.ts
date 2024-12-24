@@ -1,3 +1,4 @@
+"use server";
 import { readVideos, writeVideos } from "@/actions/videoHandler";
 import { getSession } from "@/actions/session";
 

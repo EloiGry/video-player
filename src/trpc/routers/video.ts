@@ -1,9 +1,9 @@
 import { z } from 'zod';
 import { createTRPCRouter, baseProcedure } from '../init'; 
-import { readVideos, readVideoById } from '@/actions/videoHandler';
+import { readVideos, readVideoBySlug } from '@/actions/videoHandler';
 import { incrementViews } from '@/actions/incrementViews';
 import { incrementLikes } from '@/actions/incrementLikes';
-import { Video } from '@/types/video';
+
 
 
 // Video router
@@ -17,12 +17,12 @@ export const videoRouter = createTRPCRouter({
   // Endpoint to get one video
   getVideo: baseProcedure
     .input(z.object({
-    id: z.string().min(1),
+    slug: z.string().min(1),
     }))
     .query(async (opts) => {
-    const { id } = opts.input;
-    const videos = await readVideoById(id); 
-    return videos.find((video: Video) => video.id === id) || null;
+    const { slug } = opts.input;
+    const video = await readVideoBySlug(slug); 
+    return video
     }),
 
 

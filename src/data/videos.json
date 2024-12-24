@@ -2,6 +2,7 @@
     {
         "id": "1",
         "slug": "train-video",
+        "thumbnail": "/thumbnail-train.png",
         "title": "Train Video",
         "description": "Description of train video",
         "url": "/video_train.mp4",
@@ -13,6 +14,7 @@
     {
         "id": "2",
         "slug": "test-video",
+        "thumbnail": "/thumbnail-test.png",
         "title": "Test Video",
         "description": "Description of test video",
         "url": "/video_test.mp4",

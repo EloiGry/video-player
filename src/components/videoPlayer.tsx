@@ -6,9 +6,11 @@ import { VideoControls } from './videoControls';
 
 type VideoPlayerProps = {
     url: string;
+    title: string;
+
   }
 
-export function VideoPlayer({url}: VideoPlayerProps) {
+export function VideoPlayer({url, title}: VideoPlayerProps) {
     const playerRef = useRef<ReactPlayer | null>(null);
     const playerContainerRef = useRef<HTMLDivElement | null>(null);
     const controlsRef = useRef<HTMLDivElement | null>(null);
@@ -37,7 +39,7 @@ export function VideoPlayer({url}: VideoPlayerProps) {
       };
     
       const handleMouseLeave = () => {
-        if (controlsRef.current) {
+        if (controlsRef.current && videoState.playing) {
           controlsRef.current.style.display = "none";
         }
       };
@@ -56,10 +58,13 @@ export function VideoPlayer({url}: VideoPlayerProps) {
                 volume={videoState.volume}
                 playbackRate={videoState.playbackRate}
                 onProgress={handleProgress}
+                onEnded={togglePlay}
+                
             />
             <div className="absolute inset-0 w-full h-full"> 
                 <VideoControls 
                     controlsRef={controlsRef}
+                    title={title}
                     onPlayPause={togglePlay} 
                     play={videoState.playing} 
                     onRewind={() => handleRewind(playerRef, 10)}

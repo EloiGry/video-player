@@ -121,6 +121,8 @@ export function useVideoPlayer() {
         const time = playerRef.current ? playerRef.current.getDuration() : 0;
         return format(time);
       }
+
+    
       
 
       return {

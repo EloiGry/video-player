@@ -18,10 +18,10 @@ export const readVideos = async (): Promise<any[]> => {
 };
 
 //Read One Video
-export const readVideoById = async (id: string): Promise<any | null> => {
+export const readVideoBySlug = async (slug: string): Promise<any | null> => {
     try {
       const videos = await readVideos();  // Utilise la fonction précédente pour lire toutes les vidéos
-      return videos.find((video) => video.id === id) || null;
+      return videos.find((video) => video.slug === slug) || null;
     } catch (error) {
       console.error('Error reading video by ID:', error);
       return null;

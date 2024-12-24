@@ -8,6 +8,7 @@ import { Volume } from "./controls/volume";
 
 type VideoControlsProps = {
     controlsRef: React.RefObject<HTMLDivElement | null>
+    title: string;
     onPlayPause: () => void;
     play: boolean;
     onRewind: () => void;
@@ -30,6 +31,7 @@ type VideoControlsProps = {
   };
 
 export function VideoControls({
+    title,
     onPlayPause, 
     play, 
     onRewind, 
@@ -53,6 +55,7 @@ export function VideoControls({
 }: VideoControlsProps) {
     return (
         <div ref={controlsRef}>
+            <span className="absolute top-0 bg-black bg-opacity-60 py-2 px-4 rounded-br-lg"> {title} </span>
             <div className="absolute inset-0 flex justify-center items-center gap-2"> 
                 <Rewind  onRewind={onRewind} number={10}/>
                     <PlayPause classNamePlay="opacity-80 hover:opacity-100 transition-opacity duration-300" classNamePause="opacity-80 hover:opacity-100 transition-opacity duration-300" sizeIcon={80} isPlaying={play} onTogglePlay={onPlayPause} />
