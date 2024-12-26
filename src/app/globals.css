@@ -159,3 +159,8 @@ blockquote {
   }
 }
 
+@layer utilities {
+  .clip-path-custom {
+    clip-path: inset(13% 0 13% 0); /* Ajustez les valeurs selon vos besoins */
+  }
+}

@@ -6,11 +6,6 @@ import { getSession } from '@/actions/session';
 
 
 export const createTRPCContext = cache(async () => {
-    const session = await getSession();
-
-    return {
-        session,
-    }
 });
 // Avoid exporting the entire t-object
 // since it's not very descriptive.

@@ -25,14 +25,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <TRPCProvider>
-      <html lang="en">
+    <html lang="en">
         <body
           className={`${montserrat.variable} ${lato.variable} antialiased`}
-        >
-          {children}
+          >
+            <TRPCProvider>
+              {children}
+            </TRPCProvider>
         </body>
       </html>
-    </TRPCProvider>
   );
 }

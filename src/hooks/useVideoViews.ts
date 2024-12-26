@@ -1,3 +1,4 @@
+"use client"
 import { useState, useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { trpc } from "@/trpc/client";
@@ -11,10 +12,10 @@ export function useVideoViews(video: Video) {
 
   // Update the view count when the video data changes
   useEffect(() => {
-    if (video) {
-      setViewCount(video.watchCount); 
+    if (video && video.watchCount !== viewCount) {
+      setViewCount(video.watchCount);
     }
-  }, [video]);
+  }, [video, viewCount]);
 
   // Function to increment the view count of a specific video
   const incrementView = async (videoId: string) => {
@@ -22,8 +23,6 @@ export function useVideoViews(video: Video) {
       const updatedViewCount = await incrementViews({ id: videoId });
 
       setViewCount(Number(updatedViewCount));
-
-      console.log(updatedViewCount);
 
       // Update the cached data for the specific video in the query client
       queryClient.setQueryData(['video', videoId], (oldData: Video) => {

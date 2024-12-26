@@ -3,6 +3,7 @@ import { useRef } from 'react';
 import ReactPlayer from 'react-player';
 import { useVideoPlayer } from '@/hooks/useVideoPlayer';
 import { VideoControls } from './videoControls';
+import { LoadingSpinner } from './loader/loadingSpinner';
 
 type VideoPlayerProps = {
   url: string;
@@ -32,8 +33,13 @@ export function VideoPlayer({ url, title, id, onView }: VideoPlayerProps) {
     currentTime,
     duration,
     handleProgress,
-    handleEnded
+    handleEnded,
+    handleBuffer,
+    handleBufferEnd,
+    togglePause
   } = useVideoPlayer();
+
+  
 
   const handleMouseMove = () => {
     if (controlsRef.current) {
@@ -65,6 +71,9 @@ export function VideoPlayer({ url, title, id, onView }: VideoPlayerProps) {
         playbackRate={videoState.playbackRate}
         onProgress={(state) => handleProgress(state, onView, id)}
         onEnded={handleEnded}
+        onBuffer={handleBuffer}
+        onBufferEnd={handleBufferEnd}
+        onPause={togglePause}
       />
       <div className="absolute inset-0 w-full h-full">
         <VideoControls
@@ -72,6 +81,7 @@ export function VideoPlayer({ url, title, id, onView }: VideoPlayerProps) {
           title={title}
           onPlayPause={togglePlay}
           play={videoState.playing}
+          fullscreen={videoState.fullscreen}
           onRewind={() => handleRewind(playerRef, 10)}
           onForward={() => handleForward(playerRef, 10)}
           onMute={handleMute}
@@ -81,7 +91,6 @@ export function VideoPlayer({ url, title, id, onView }: VideoPlayerProps) {
           onVolumeSeekDown={(value: number[]) => handleVolumeSeekDown(value)}
           playbackRate={videoState.playbackRate}
           onPlaybackRateChange={handlePlayBackRate}
-          fullscreen={videoState.fullscreen}
           onToggleFullScreen={() => toggleFullScreen(playerContainerRef)}
           onSeek={(value: number[]) => handleSeekChange(value)}
           onSeekMouseDown={handleSeekMouseDown}
@@ -89,7 +98,9 @@ export function VideoPlayer({ url, title, id, onView }: VideoPlayerProps) {
           played={videoState.played}
           currentTime={currentTime(playerRef)}
           duration={duration(playerRef)}
+          isLoading={videoState.buffer && videoState.playing}
         />
+        {(videoState.buffer && videoState.playing) && <LoadingSpinner className="absolute inset-0 z-50 m-auto w-16 h-16"/>}
       </div>
     </div>
   );

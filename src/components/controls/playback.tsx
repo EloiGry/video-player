@@ -26,7 +26,7 @@ export function PlayBackRate({ onPlayBackRate, playbackRate }: PlaybackRateProps
                     }
                 )}
             >
-                {[0.5, 1, 1.5, 2].map((rate) => (
+                {[2, 1.5, 1, 0].map((rate) => (
                     <button
                         key={rate}
                         onClick={() => {

@@ -34,23 +34,48 @@ export default function VideoPlayerPage({ params }: { params: Promise<{ slug: st
             <BackButton className="absolute left-2" />
             <div className="w-full md:w-2/3 mx-auto">
                 <h1>{video?.title}</h1>
-                <VideoPlayer
-                    url={video?.url}
-                    title={video?.title}
-                    id={video?.id}
-                    onView={() => incrementView(video.id)} 
+                <VideoPlayerContent 
+                    video={video} 
+                    likeCount={likeCount} 
+                    isLiked={isLiked} 
+                    viewCount={viewCount} 
+                    incrementView={incrementView} 
+                    handleLike={handleLike} 
                 />
-                <div className="flex justify-between items-center mt-2">
-                    <LikeButton
-                        videoCount={likeCount}
-                        handleLike={handleLike}
-                        isLiked={isLiked}
-                        className="font-semibold"
-                    />
-                    <span className="font-semibold">{viewCount} views</span>
-                </div>
-                <p>{video?.description}</p>
             </div>
         </div>
     );
+}
+
+type VideoPlayerContentProps = {
+    video: { title: string, url: string, id: string, description: string };
+    likeCount: number;
+    isLiked: boolean;
+    viewCount: number;
+    incrementView: (id: string) => void;
+    handleLike: () => void;
+  }
+
+function VideoPlayerContent ({
+    video, likeCount, isLiked, viewCount, incrementView, handleLike}: VideoPlayerContentProps) {
+    return (
+        <>
+            <VideoPlayer
+            url={video?.url}
+            title={video?.title}
+            id={video?.id}
+            onView={() => incrementView(video.id)} 
+            />
+            <div className="flex justify-between items-center mt-2">
+                <LikeButton
+                    videoCount={likeCount}
+                    handleLike={handleLike}
+                    isLiked={isLiked}
+                    className="font-semibold"
+                />
+                <span className="font-semibold">{viewCount} views</span>
+            </div>
+            <p>{video?.description}</p>
+        </> 
+    )
 }

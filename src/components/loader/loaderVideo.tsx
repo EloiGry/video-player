@@ -5,7 +5,8 @@ export function LoaderVideo() {
         <div className="pt-12 container">
             <div className="w-full md:w-2/3 mx-auto space-y-4">
                 <Skeleton className="h-10 w-[200px]" />
-                <Skeleton className="h-[400px] w-full" />
+                <Skeleton className="h-[500px] w-full" />
+                <Skeleton className="h-4 w-full" />
                 <Skeleton className="h-4 w-full" />
                 <Skeleton className="h-4 w-full" />
             </div>

@@ -1,7 +1,7 @@
 import { format } from '@/utils/format';
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import ReactPlayer from 'react-player';
-import screefull from 'screenfull'
+import screenfull from 'screenfull'
 
 type PlayerRef = React.RefObject<ReactPlayer | null>;
 
@@ -13,9 +13,11 @@ export function useVideoPlayer() {
     volume: 0.5,
     seeking: false,
     playbackRate: 1.0,
-    fullscreen: false,
     played: 0,
-    hasSeenHalf: false
+    paused: false,
+    hasSeenHalf: false,
+    buffer: true,
+    fullscreen: false,
   });
 
   // Toggle play/pause state
@@ -23,6 +25,13 @@ export function useVideoPlayer() {
     setVideoState(prevState => ({
       ...prevState,
       playing: !prevState.playing,
+    }));
+
+    // Toggle play/pause state
+  const togglePause = () =>
+    setVideoState(prevState => ({
+      ...prevState,
+      paused: !prevState.paused,
     }));
 
   // Rewind the video by a given number of seconds
@@ -76,14 +85,29 @@ export function useVideoPlayer() {
   }
 
   // Toggle fullscreen mode
-  const toggleFullScreen = (
-    playerContainerRef: React.RefObject<HTMLDivElement | null>
-  ) => {
-    if (screefull.isEnabled && playerContainerRef.current) {
-      screefull.toggle(playerContainerRef.current);
-      setVideoState(prevState => ({ ...prevState, fullscreen: !prevState.fullscreen }));
-    }
-  }
+  const toggleFullScreen = useCallback(
+    (playerContainerRef: React.RefObject<HTMLDivElement | null>) => {
+      if (screenfull.isEnabled && playerContainerRef.current) {
+        screenfull.toggle(playerContainerRef.current);
+      }
+    },
+    []
+  );
+
+  useEffect(() => {
+    const handleFullScreenChange = () => {
+      setVideoState((prevState) => ({
+        ...prevState,
+        fullscreen: screenfull.isFullscreen,
+      }));
+    };
+
+    screenfull.on('change', handleFullScreenChange);
+
+    return () => {
+      screenfull.off('change', handleFullScreenChange);
+    };
+  }, []);
 
   // Update progress and trigger view increment after 50% viewed
   const handleProgress = (state: any, incrementViews: (id: string) => void, id: string) => {
@@ -152,9 +176,25 @@ export function useVideoPlayer() {
     togglePlay()
   };
 
+  // Handle buffering video
+  const handleBuffer = () => {
+    setVideoState(prevState => ({
+      ...prevState,
+      buffer: true
+    }));
+  }
+
+  const handleBufferEnd = () => {
+      setVideoState(prevState => ({
+        ...prevState,
+        buffer: false
+      }));
+  }
+
   return {
     videoState,
     togglePlay,
+    togglePause,
     handleRewind,
     handleForward,
     handleMute,
@@ -168,6 +208,8 @@ export function useVideoPlayer() {
     currentTime,
     duration,
     handleProgress,
-    handleEnded
+    handleEnded,
+    handleBuffer,
+    handleBufferEnd
   };
 }
